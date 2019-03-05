@@ -23,3 +23,4 @@ def list_countries(request):
     selcountries = filter(lambda c: c['region'] == 'Asia', countries)
     return render(request, 'countries.html',
                   {'countries': selcountries})
+
