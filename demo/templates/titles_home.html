@@ -1,0 +1,9 @@
+{% extends "titles_master.html" %}
+{% block content%}
+<h2>Titles Summary</h2>
+
+No. of titles : {{summary.count}}
+<p/>
+Average Price of titles : {{summary.avgprice | floatformat:2 }}
+
+{% endblock %}

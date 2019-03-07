@@ -1,0 +1,28 @@
+{% extends "titles_master.html" %}
+{% block content%}
+<h2>List Of Titles</h2>
+
+<table width="100%" cellpadding="5pt">
+    <tr style="background-color:black;color:white">
+        <th>Id</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+    {% for title in titles %}
+       <tr>
+           <td>{{title.id}}</td>
+           <td>{{title.title}}</td>
+           <td>{{title.author}}</td>
+           <td style="text-align:right">{{title.price}}</td>
+           <td style="text-align:center">
+               <a href="/demo/titles/edit">Edit</a>
+               <a href="/demo/titles/delete/{{title.id}}"
+                  onclick="return confirm('Do you want to delete this book?')">Delete</a>
+           </td>
+       </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
