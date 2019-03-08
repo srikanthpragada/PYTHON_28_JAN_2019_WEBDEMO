@@ -1,6 +1,7 @@
 import requests
 from django.http import HttpResponse
 from django.shortcuts import render
+from datetime import datetime
 
 from .models import Course
 
@@ -24,3 +25,10 @@ def list_countries(request):
     return render(request, 'countries.html',
                   {'countries': selcountries})
 
+
+def ajax_demo(request):
+    return render(request,'ajax_demo.html')
+
+def ajax_datetime(request):
+    cd = datetime.now()
+    return HttpResponse(str(cd))

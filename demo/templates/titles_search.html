@@ -1,0 +1,20 @@
+{% extends "titles_master.html" %}
+{% block content%}
+<h2>Search Titles</h2>
+
+Title : <input type="text" id="title"/>
+<button>Search</button>
+
+
+
+<table width="100%" cellpadding="5pt"  style="visibility:hidden" >
+    <tr style="background-color:black;color:white">
+        <th>Id</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+</table>
+
+{% endblock %}
