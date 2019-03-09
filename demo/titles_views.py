@@ -1,4 +1,5 @@
 from django.db.models import Avg, Count
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 from .forms import AddTitleForm
@@ -27,6 +28,17 @@ def titles_add(request):
 def titles_list(request):
     titles = Title.objects.all()
     return render(request, 'titles_list.html', {'titles': titles})
+
+
+def titles_search_form(request):
+    return render(request, 'titles_search.html')
+
+
+def titles_search(request):
+    title = request.GET["title"]
+    titles = Title.objects.filter(title__contains=title).values()
+    titles = list(titles)
+    return JsonResponse(titles, safe=False)
 
 
 # /demo/titles/delete/<int:id>
@@ -58,4 +70,3 @@ def titles_edit(request, id):
     # Common for GET and POST
     return render(request, 'titles_edit.html',
                   {'message': message, 'form': f})
-

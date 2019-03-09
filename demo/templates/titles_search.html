@@ -1,20 +1,55 @@
 {% extends "titles_master.html" %}
 {% block content%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+   // Hide table on document ready event
+   $(document).ready
+          (function()
+           {
+             $("#titlesTable").hide();
+           }
+         );
+
+    function getTitles()
+    {
+       $.getJSON("/demo/titles/search?title=" + $("#title").val(),{},
+           showTitles);
+    }
+
+    function showTitles(titles)
+    {
+       $("#tableBody").text("");
+       $.each(titles,
+          function(idx,title) {
+             row = "<tr><td>" + title.id + "</td><td>"  +
+                 title.title + "</td><td>" + title.author +
+                 "</td><td>" + title.price  + "</td></tr>";
+             $("#tableBody").append(row);
+          }
+      ); // each
+
+      $("#titlesTable").show();
+    }
+
+</script>
 <h2>Search Titles</h2>
 
 Title : <input type="text" id="title"/>
-<button>Search</button>
-
-
-
-<table width="100%" cellpadding="5pt"  style="visibility:hidden" >
+<button onclick="getTitles()">Search</button>
+<p/>
+<table id="titlesTable" width="100%" cellpadding="5pt">
+    <thead>
     <tr style="background-color:black;color:white">
         <th>Id</th>
         <th>Title</th>
         <th>Author</th>
         <th>Price</th>
-        <th></th>
     </tr>
+    </thead>
+    <tbody id="tableBody">
+
+    </tbody>
+
 </table>
 
 {% endblock %}

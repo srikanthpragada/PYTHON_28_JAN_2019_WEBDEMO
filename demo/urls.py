@@ -16,4 +16,6 @@ urlpatterns = [
     path('titles/add/', titles_views.titles_add),
     path('titles/delete/<int:id>', titles_views.titles_delete),
     path('titles/edit/<int:id>', titles_views.titles_edit),
+    path('titles/searchform', titles_views.titles_search_form),
+    path('titles/search', titles_views.titles_search),
 ]
