@@ -1,7 +1,8 @@
+from datetime import datetime
+
 import requests
 from django.http import HttpResponse
 from django.shortcuts import render
-from datetime import datetime
 
 from .models import Course
 
@@ -27,8 +28,25 @@ def list_countries(request):
 
 
 def ajax_demo(request):
-    return render(request,'ajax_demo.html')
+    return render(request, 'ajax_demo.html')
+
 
 def ajax_datetime(request):
     cd = datetime.now()
     return HttpResponse(str(cd))
+
+
+def session_names(request):
+    # either take existing names or empty list
+    if 'names' in request.session:
+        names = request.session['names']
+    else:
+        names = []
+
+    if 'fullname' in request.GET:
+        # add name to list
+        fullname = request.GET["fullname"]
+        names.append(fullname)
+        request.session['names'] = names
+
+    return render(request, 'sessions.html', {'names': names})
