@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views, hr_views, titles_views
+from . import views, hr_views, titles_views, rest_views
 
 urlpatterns = [
     path('welcome/', views.welcome),
@@ -19,4 +19,7 @@ urlpatterns = [
     path('titles/searchform', titles_views.titles_search_form),
     path('titles/search', titles_views.titles_search),
     path('sessions/', views.session_names),
+    path('api/titles/', rest_views.title_process),
+    path('api/titles/<int:id>', rest_views.one_title_process),
+    path('api/client', rest_views.rest_client),
 ]
