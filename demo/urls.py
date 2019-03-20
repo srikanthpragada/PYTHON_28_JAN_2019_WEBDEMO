@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views, hr_views, titles_views, rest_views
+from . import views, hr_views, titles_views, rest_views, class_views
 
 urlpatterns = [
     path('welcome/', views.welcome),
@@ -22,4 +22,7 @@ urlpatterns = [
     path('api/titles/', rest_views.title_process),
     path('api/titles/<int:id>', rest_views.one_title_process),
     path('api/client', rest_views.rest_client),
+    # Class based views
+    path('hello/', class_views.HelloView.as_view()),
+    path('titles/', class_views.ListTitles.as_view()),
 ]
